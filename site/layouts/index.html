@@ -1,9 +1,15 @@
 {{ partial "header" . }}
 
-<h1>Hugo with Gulp, PostCSS and Webpack</h1>
+<ul class="artists tl pl1.5">
+{{ range where .Site.Pages "Section" "artist" }}
+  {{ if eq .Params.Featured true }}
+    <li class="artists__item--featured lh-solid mb3">{{ .Title }}</li>
+  {{ else if eq .Params.Featured false }}
+    <li class="artists__item lh-solid mb3">{{ .Title }}</li>
+  {{ end }}
+{{ end }}
+</ul>
 
-<p>
-  Hooray 🎉 - you've built this with <a href="https://github.com/netlify/victor-hugo">Victor-Hugo</a>!
-</p>
+{{ partial "menu" . }}
 
 {{ partial "footer" . }}

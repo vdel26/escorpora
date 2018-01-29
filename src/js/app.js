@@ -17,24 +17,37 @@ menuIcon.addEventListener('touchend', function () {
   mobileNav.classList.toggle('is-menu-open')
 })
 
-const playVideo = (video) => {
-  video.classList.add('is-playing')
-}
-
 // video selection
 const artistsList = document.querySelector('.artists')
+let currentVideo = null
+
+const playVideo = (video) => {
+  // user clicked on a video and none was playing --> play it
+  if (!currentVideo) {
+    video.play()
+    currentVideo = video
+    video.classList.add('is-playing')
+
+  // user clicked on the same video that was playing --> pause it
+  } else if (currentVideo === video){
+    video.pause()
+    video.classList.remove('is-playing')
+    currentVideo = null
+
+  // user clicked on a different video while one was playing --> pause and play new
+  } else {
+    currentVideo.pause()
+    currentVideo.classList.remove('is-playing')
+    video.play()
+    currentVideo = video
+    video.classList.add('is-playing')
+  }
+}
+
 artistsList.addEventListener('click', function (evt) {
   let videoName = evt.target.dataset.video
   let video = document.querySelector(`video[data-name="${videoName}"]`)
-  if (video.paused) {
-    video.play()
-    video.classList.add('is-playing')
-  }
-  else {
-    video.pause()
-    video.classList.remove('is-playing')
-  }
-  console.log(evt.target)
-  console.log(videoName)
-  console.log(video)
+  console.log('current', currentVideo)
+  console.log('new', video)
+  playVideo(video)
 })

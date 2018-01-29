@@ -1,48 +1,19 @@
 /* css imports */
 
-/*@import "imports/reset.css";*/
-@import "imports/tachyons.css";
+@import "imports/tachyons/src/tachyons.css";
+@import "imports/variables.css";
 
 /* font imports */
 
 @font-face {
-  font-family: 'Canela';
+  font-family: 'CanelaLight';
   font-style: normal;
   font-weight: normal;
-  src: local('Canela-Light'),
-       url('../../site/static/fonts/Canela-Light.woff2') format('woff2'),
-       url('../../site/static/fonts/Canela-Light.woff') format('woff'),
-       url('../../site/static/fonts/Canela-Light.eot?#iefix') format('embedded-opentype'),
-       url('../../site/static/fonts/Canela-Light.ttf') format('truetype'),
-       url('../../site/static/fonts/Canela-Light.svg') format('svg');
-}
-
-/* variable definitions http://cssnext.io/features/#custom-properties-var */
-
-:root {
-  /* typography */
-  --font-sans-serif: 'Work Sans',
-                     -apple-system,
-                     BlinkMacSystemFont,
-                     'Segoe UI',
-                     Helvetica,
-                     Arial,
-                     sans-serif,
-                     'Apple Color Emoji',
-                     'Segoe UI Emoji',
-                     'Segoe UI Symbol';
-  --font-serif: 'Canela',
-                serif;
-
-  /* type sizes */
-  --fs-canela-mobile: 24px;
-  --fs-canela-desktop: 40px;
-  --fs-work-mobile: 18px;
-  --fs-work-desktop: 24px;
-
-  /* colors */
-  --black: #111;
-  --white: #FFF;
+  src: url('/fonts/Canela-Light.woff2') format('woff2'),
+       url('/fonts/Canela-Light.woff') format('woff'),
+       url('/fonts/Canela-Light.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/Canela-Light.ttf') format('truetype'),
+       url('/fonts/Canela-Light.svg') format('svg');
 }
 
 /* extending tachyons */
@@ -52,7 +23,11 @@
 .bottom-1\.5 { bottom: 1.5rem; }
 .left-1\.5 { left: 1.5rem; }
 
-.w1\.5 { width: 1.5rem; }
+.content-box { box-sizing: content-box; }
+
+/*.right-5 { right: 5rem; }*/
+
+/*.w1\.5 { width: 1.5rem; }
 .h1\.5 { height: 1.5rem; }
 
 .ma1\.5 { margin: 1.5rem; }
@@ -69,7 +44,7 @@
 .pt1\.5 { padding-top: 1.5rem; }
 .pr1\.5 { padding-right: 1.5rem; }
 .pb1\.5 { padding-bottom: 1.5rem; }
-.pl1\.5 { padding-left: 1.5rem; }
+.pl1\.5 { padding-left: 1.5rem; }*/
 
 
 /* global css */
@@ -87,56 +62,127 @@ body {
 .artists {
   font-family: var(--font-serif);
   font-size: var(--fs-canela-mobile);
+  line-height: 1;
   color: var(--white);
-  list-style: none;
+}
+
+@media (--breakpoint-not-small) {
+    .artists {
+      font-size: var(--fs-canela-desktop);
+      line-height: 1.2;
+    }
+}
+
+/* navigation */
+
+.brand {
+  transition: 0.4s all ease;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.navigation {
+  z-index: 20;
+  font-family: var(--font-sans-serif);
+}
+
+.navigation--mobile {
+  font-size: var(--fs-work-mobile);
+  line-height: 1;
+}
+
+.navigation--desktop {
+  font-size: var(--fs-work-desktop);
+  line-height: 1.2;
 }
 
 /* mobile menu */
 
-.navigation {
-  font-family: var(--font-sans-serif);
+.navigation--mobile {
+  & .menu__link:nth-child(1) {
+    transition: 0.4s all ease 0s;
+    transform: translate3d(0, 2rem, 0);
+    opacity: 0;
+  }
+
+  & .menu__link:nth-child(2) {
+    transition: 0.4s all ease 0.10s;
+    transform: translate3d(0, 2rem, 0);
+    opacity: 0;
+  }
+
+  & .menu__link:nth-child(3) {
+    transition: 0.4s all ease 0.15s;
+    transform: translate3d(0, 2rem, 0);
+    opacity: 0;
+  }
+
+  & .menu-icon {
+    text-align: right;
+    height: 18px;
+    width: 32px;
+  }
+
+  & .menu-icon__line {
+    height: 2px;
+    background: var(--white);
+    transition: 0.4s all ease;
+  }
+
+  & .menu-icon__line:nth-child(odd) {
+    width: 2rem;
+  }
+
+  & .menu-icon__line:nth-child(even) {
+    width: 1.5rem;
+  }
 }
 
-.brand {
-  font-size: var(--fs-work-mobile);
-  transition: 0.4s all ease;
+.navigation--mobile.is-menu-open {
+  & .menu-icon__line:nth-child(odd) {
+    width: 1.5rem;
+  }
+
+  & .menu-icon__line:nth-child(even) {
+    width: 2rem;
+  }
+
+  & .menu__link {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  & .brand {
+    transform: translate3d(0, -2rem, 0);
+    opacity: 0;
+  }
 }
 
-.menu {
-  line-height: 18px;
-  transition: 0.4s all ease;
+/* mask in artists list */
+.scroll-container {
+  z-index: 10;
+  mask-image: linear-gradient(transparent 0%, black 20%, black 80%, transparent 100%);
 }
 
-.menu__link {
-  font-size: var(--fs-work-mobile);
-}
+/* video test iframe */
+.video-container {
+  z-index: 0;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  pointer-events: none;
 
-.menu-icon {
-  text-align: right;
-  height: 18px;
-  width: 32px;
+  & iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
 }
-
-.menu-icon__line {
-  height: 2px;
-  background: var(--white);
-  transition: 0.4s all ease;
+@media (min-aspect-ratio: 16/9) {
+  .video-container iframe { height: 300%; top: -100%; }
 }
-
-.menu-icon__line:nth-child(odd) {
-  width: 2rem;
+@media (max-aspect-ratio: 16/9) {
+  .video-container iframe { width: 300%; left: -100%; }
 }
-
-.menu-icon__line:nth-child(even) {
-  width: 1.5rem;
-}
-
-.is-menu-open .menu-icon__line:nth-child(odd) {
-  width: 1.5rem;
-}
-
-.is-menu-open .menu-icon__line:nth-child(even) {
-  width: 2rem;
-}
-
-/* */

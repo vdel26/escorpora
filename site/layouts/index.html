@@ -1,15 +1,28 @@
 {{ partial "header" . }}
 
-<ul class="artists tl pl1.5">
-{{ range where .Site.Pages "Section" "artist" }}
-  {{ if eq .Params.Featured true }}
-    <li class="artists__item--featured lh-solid mb3">{{ .Title }}</li>
-  {{ else if eq .Params.Featured false }}
-    <li class="artists__item lh-solid mb3">{{ .Title }}</li>
+<div class="min-vh-100 flex flex-column flex-row-ns">
+
+<div class="scroll-container flex-auto vh-100-ns overflow-hidden">
+
+  <ul class="artists list tl mv0 pl4 pl6-ns vh-100-ns w-100 content-box overflow-scroll">
+
+  {{ range where .Site.Pages "Section" "artist" }}
+    {{ if eq .Params.Featured true }}
+      <li class="artists__item--featured mb3">{{ .Title }}</li>
+    {{ else if eq .Params.Featured false }}
+      <li class="artists__item mb3">{{ .Title }}</li>
+    {{ end }}
   {{ end }}
-{{ end }}
-</ul>
+
+  </ul>
+
+</div>
 
 {{ partial "menu" . }}
+
+<!-- {{ partial "videobg" . }} -->
+
+</div>
+
 
 {{ partial "footer" . }}

@@ -18,7 +18,7 @@
         <span class="pointer">{{ .Title }}</span>
       </li>
     {{ else if eq .Params.Featured false }}
-      <li class="artists__item mb3 pointer" data-video="{{ .Params.Video }}">
+      <li class="artists__item mb3" data-video="{{ .Params.Video }}">
         <span class="pointer">{{ .Title }}</span>
       </li>
     {{ end }}

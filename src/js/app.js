@@ -4,11 +4,17 @@ const mobileNav = document.querySelector('.navigation--mobile')
 const menuIcon = mobileNav.querySelector('.menu-icon')
 const menu = mobileNav.querySelector('.navigation--mobile .menu')
 const brand = mobileNav.querySelector('.navigation--mobile .brand')
+const pauseButton = document.querySelector('.pause-button')
+const videosList = document.querySelector('.video-container')
 
 menuIcon.addEventListener('touchend', function () {
   console.log('menu toggle')
   mobileNav.classList.toggle('is-menu-open')
 })
+
+const bringToFront = (item, collection) => {
+  collection.insertBefore(item, collection.firstElementChild)
+}
 
 // video selection
 const artistsList = document.querySelector('.artists')
@@ -20,13 +26,16 @@ const playVideo = (video) => {
     video.play()
     currentVideo = video
     video.classList.add('is-playing')
+    bringToFront(video, videosList)
     document.body.classList.add('pause-cursor')
+    pauseButton.classList.add('is-playing')
 
   // user clicked on the same video that was playing --> pause it
   } else if (currentVideo === video){
     video.pause()
     video.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
+    pauseButton.classList.remove('is-playing')
     currentVideo = null
 
   // user clicked on a different video while one was playing --> pause and play new
@@ -34,10 +43,13 @@ const playVideo = (video) => {
     currentVideo.pause()
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
+    pauseButton.classList.remove('is-playing')
     video.play()
     currentVideo = video
     video.classList.add('is-playing')
+    bringToFront(video, videosList)
     document.body.classList.add('pause-cursor')
+    pauseButton.classList.add('is-playing')
   }
 
   // user clicked outside any video --> pause current one
@@ -45,6 +57,7 @@ const playVideo = (video) => {
     currentVideo.pause()
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
+    pauseButton.classList.remove('is-playing')
     currentVideo = null
   }
 }

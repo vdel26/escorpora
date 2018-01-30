@@ -144,7 +144,13 @@ body {
   transform: rotate(270deg) translateX(-40vh);
   transform-origin: right bottom 0;
   letter-spacing: 0.5em;
+  opacity: 0;
+  transition: 0.3s opacity ease;
 }
+.pause-button.is-playing {
+  opacity: 1;
+}
+
 
 /* mask in artists list */
 .scroll-container {
@@ -172,15 +178,13 @@ body {
 }
 
 video {
-  display: none;
   opacity: 0;
-  z-index: 0;
+  transition: .8s opacity ease;
 }
 
 video.is-playing {
-  display: block;
   opacity: 1;
-  z-index: 10;
+  transition: .8s opacity ease;
 }
 
 /*@media (min-aspect-ratio: 16/9) {

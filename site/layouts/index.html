@@ -6,18 +6,20 @@
 
 {{ partial "menu-mobile" . }}
 
+<div class="pause-button dn-ns db absolute right-1 ttu tracked">pause</div>
+
 <div class="scroll-container flex-auto vh-100-ns overflow-hidden">
 
   <ul class="artists list tl mv0 pl4 pl6-ns vh-100-ns w-100 content-box overflow-scroll">
 
   {{ range where .Site.Pages "Section" "artist" }}
     {{ if eq .Params.Featured true }}
-      <li class="artists__item--featured mb3 pointer" data-video="{{ .Params.Video }}">
-        {{ .Title }}
+      <li class="artists__item--featured mb3" data-video="{{ .Params.Video }}">
+        <span class="pointer">{{ .Title }}</span>
       </li>
     {{ else if eq .Params.Featured false }}
       <li class="artists__item mb3 pointer" data-video="{{ .Params.Video }}">
-        {{ .Title }}
+        <span class="pointer">{{ .Title }}</span>
       </li>
     {{ end }}
   {{ end }}

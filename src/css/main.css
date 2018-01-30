@@ -139,6 +139,13 @@ body {
   }
 }
 
+/* mobile "pause" button */
+.pause-button {
+  transform: rotate(270deg) translateX(-40vh);
+  transform-origin: right bottom 0;
+  letter-spacing: 0.5em;
+}
+
 /* mask in artists list */
 .scroll-container {
   z-index: 10;

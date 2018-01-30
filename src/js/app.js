@@ -1,11 +1,4 @@
-console.log("🦊 Hello! Edit me in src/js/app.js")
-
-// // feature detection: scrollbar hiding
-// try {
-//   const scrollbarFeature = document.querySelector('::-webkit-scrollbar')
-// } catch (err) {
-//   console.log(err)
-// }
+console.log("🐡 Hello, I'm an escórpora!")
 
 const mobileNav = document.querySelector('.navigation--mobile')
 const menuIcon = mobileNav.querySelector('.menu-icon')
@@ -37,7 +30,7 @@ const playVideo = (video) => {
     currentVideo = null
 
   // user clicked on a different video while one was playing --> pause and play new
-  } else {
+  } else if (video) {
     currentVideo.pause()
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
@@ -46,10 +39,18 @@ const playVideo = (video) => {
     video.classList.add('is-playing')
     document.body.classList.add('pause-cursor')
   }
+
+  // user clicked outside any video --> pause current one
+  else {
+    currentVideo.pause()
+    currentVideo.classList.remove('is-playing')
+    document.body.classList.remove('pause-cursor')
+    currentVideo = null
+  }
 }
 
 artistsList.addEventListener('click', function (evt) {
-  let videoName = evt.target.dataset.video
+  let videoName = evt.target.parentNode.dataset.video
   let video = document.querySelector(`video[data-name="${videoName}"]`)
   console.log('current', currentVideo)
   console.log('new', video)

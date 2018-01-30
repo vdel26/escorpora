@@ -27,20 +27,24 @@ const playVideo = (video) => {
     video.play()
     currentVideo = video
     video.classList.add('is-playing')
+    document.body.classList.add('pause-cursor')
 
   // user clicked on the same video that was playing --> pause it
   } else if (currentVideo === video){
     video.pause()
     video.classList.remove('is-playing')
+    document.body.classList.remove('pause-cursor')
     currentVideo = null
 
   // user clicked on a different video while one was playing --> pause and play new
   } else {
     currentVideo.pause()
     currentVideo.classList.remove('is-playing')
+    document.body.classList.remove('pause-cursor')
     video.play()
     currentVideo = video
     video.classList.add('is-playing')
+    document.body.classList.add('pause-cursor')
   }
 }
 

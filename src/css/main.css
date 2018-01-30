@@ -25,6 +25,8 @@
 
 .content-box { box-sizing: content-box; }
 
+.pause-cursor { cursor: url(/images/pause-icon.svg) 25 25, auto; }
+
 /* global css */
 
 body {

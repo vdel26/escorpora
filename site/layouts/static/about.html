@@ -1,6 +1,18 @@
 {{ partial "header" . }}
 
-<div class="about">{{ .Title }}</div>
-<div class="">This is a test</div>
+<div class="min-vh-100 flex flex-column flex-row-ns barba-container">
+
+{{ partial "menu-mobile" . }}
+
+  <div class="flex-auto flex vh-100-ns overflow-hidden items-center">
+    <div class="about-text canela white tl pl4 pl6-ns mw8">
+      {{ .Params.Text | markdownify }}
+    </div>
+  </div>
+
+
+{{ partial "menu-desktop" . }}
+
+</div>
 
 {{ partial "footer" . }}

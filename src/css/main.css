@@ -24,8 +24,10 @@
 .left-1\.5 { left: 1.5rem; }
 
 .content-box { box-sizing: content-box; }
-
+.canela { font-family: var(--font-serif); }
+.work { font-family: var(--font-sans-serif); }
 .pause-cursor { cursor: url(/images/pause-icon.svg) 25 25, auto; }
+
 
 /* global css */
 
@@ -193,3 +195,15 @@ video.is-playing {
 @media (max-aspect-ratio: 16/9) {
   .video-container iframe { width: 300%; left: -100%; }
 }*/
+
+/* about */
+.about-text {
+  font-size: var(--fs-canela-mobile);
+  line-height: 1;
+}
+@media (--breakpoint-not-small) {
+    .about-text {
+      font-size: var(--fs-canela-desktop);
+      line-height: 1.2;
+    }
+}

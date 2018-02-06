@@ -1,5 +1,7 @@
 console.log("🐡 Hello, I'm an escórpora!")
 
+import Barba from 'barba.js'
+
 const mobileNav = document.querySelector('.navigation--mobile')
 const menuIcon = mobileNav.querySelector('.menu-icon')
 const menu = mobileNav.querySelector('.navigation--mobile .menu')
@@ -7,14 +9,21 @@ const brand = mobileNav.querySelector('.navigation--mobile .brand')
 const pauseButton = document.querySelector('.pause-button')
 const videosList = document.querySelector('.video-container')
 
+const bringToFront = (item, collection) => {
+  collection.insertBefore(item, collection.firstElementChild)
+}
+
+// start Barba page transitions
+Barba.Pjax.start()
+Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
+ console.log('newPageReady', currentStatus)
+})
+
+// attach events
 menuIcon.addEventListener('touchend', function () {
   console.log('menu toggle')
   mobileNav.classList.toggle('is-menu-open')
 })
-
-const bringToFront = (item, collection) => {
-  collection.insertBefore(item, collection.firstElementChild)
-}
 
 // video selection
 const artistsList = document.querySelector('.artists')

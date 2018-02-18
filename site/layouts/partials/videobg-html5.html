@@ -1,7 +1,7 @@
 <div class="video-container">
   {{ range where .Site.Pages "Section" "artist" }}
     {{ if isset .Params "video" }}
-    <video class="" data-name="{{ .Params.video }}" playsinline preload loop>
+    <video class="" data-name="{{ .Params.video }}" playsinline preload="none" loop>
       <source src="https://s3.eu-central-1.amazonaws.com/escorpora/{{ .Params.Video }}" type="video/mp4">
     </video>
     {{ end }}

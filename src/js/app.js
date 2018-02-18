@@ -95,10 +95,17 @@ menuIcon.addEventListener('touchend', function () {
 const artistsList = document.querySelector('.artists')
 let currentVideo = null
 
+const handlePlayError = (promise) => {
+    promise.catch(error => console.error(console.error()))
+}
+
 const playVideo = (video) => {
   // user clicked on a video and none was playing --> play it
   if (!currentVideo) {
-    video.play()
+    video.load()
+    requestAnimationFrame(() => {
+      video.play()
+    })
     currentVideo = video
     video.classList.add('is-playing')
     bringToFront(video, videosList)
@@ -119,7 +126,10 @@ const playVideo = (video) => {
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
     pauseButton.classList.remove('is-playing')
-    video.play()
+    video.load()
+    requestAnimationFrame(() => {
+      video.play()
+    })
     currentVideo = video
     video.classList.add('is-playing')
     bringToFront(video, videosList)

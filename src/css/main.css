@@ -87,7 +87,7 @@ the container reflows its content */
 .artists {
   font-family: var(--font-serif);
   font-size: var(--fs-canela-mobile);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--white);
 }
 
@@ -117,7 +117,7 @@ the container reflows its content */
     width: 20px;
     height: 20px;
     top: 10px;
-    left: -20px;
+    left: -32px;
   }
 }
 @keyframes rec {
@@ -227,7 +227,7 @@ the container reflows its content */
 /* mask in artists list */
 .scroll-container {
   z-index: 10;
-  mask-image: linear-gradient(transparent 0%, black 20%, black 80%, transparent 100%);
+  /*mask-image: linear-gradient(transparent 0%, black 20%, black 80%, transparent 100%);*/
 }
 
 /* video test iframe */

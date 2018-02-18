@@ -10,12 +10,11 @@
 
 <div class="scroll-container barba-container flex flex-auto vh-100-ns overflow-hidden order-2">
 
-  <ul class="artists flex flex-column items-start justify-center list tl mv0 pl4 pl6-ns vh-100-ns w-100 content-box overflow-scroll">
+  <ul class="artists flex flex-column items-start justify-center-ns justify-start pt5 pt0-ns list tl mv0 pl4 pl6-ns vh-100-ns w-100 content-box overflow-scroll">
 
   {{ range where .Site.Pages "Section" "artist" }}
     {{ if eq .Params.Featured true }}
       <li class="artists__item artists__item--featured mb4 pointer" data-video="{{ .Params.Video }}">
-        <!-- <span class="pointer">{{ .Title }}</span> -->
         {{ .Title }}
       </li>
     {{ end }}

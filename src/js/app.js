@@ -1,6 +1,7 @@
 console.log("🐡 Hello, I'm an escórpora!")
 
 import Barba from 'barba.js'
+import anime from 'animejs'
 
 const mobileNav = document.querySelector('.navigation--mobile')
 const menuIcon = mobileNav.querySelector('.menu-icon')
@@ -9,14 +10,79 @@ const brand = mobileNav.querySelector('.navigation--mobile .brand')
 const pauseButton = document.querySelector('.pause-button')
 const videosList = document.querySelector('.video-container')
 
+// reorder all child nodes in `collection`
+// so that `item` is the first one
 const bringToFront = (item, collection) => {
   collection.insertBefore(item, collection.firstElementChild)
 }
 
+// custom Barba page transition
+const BlurTransition = Barba.BaseTransition.extend({
+  start: function () {
+    Promise
+      .all([this.newContainerLoading, this.fadeOut()])
+      .then(this.fadeIn.bind(this))
+  },
+
+  fadeOut: function () {
+    let _this = this
+    let deferred = Barba.Utils.deferred()
+    anime({
+      targets: _this.oldContainer,
+      opacity: {
+        value: 0,
+        duration: 1000,
+        delay: 0
+      },
+      filter: {
+        value: ['blur(0px)', 'blur(20px)'],
+        duration: 1000,
+        delay: 150
+      },
+      easing: 'easeOutQuart',
+      complete: function (anim) {
+        deferred.resolve()
+      }
+    })
+    return deferred.promise
+  },
+
+  fadeIn: function () {
+    let _this = this
+    requestAnimationFrame(() => {
+      this.oldContainer.style.display = 'none'
+      this.newContainer.style.visibility = 'visible'
+      this.newContainer.style.opacity = '0'
+    })
+    anime({
+      targets: _this.newContainer,
+      opacity: {
+        value: 1,
+        duration: 1000,
+        delay: 150
+      },
+      filter: {
+        value: ['blur(20px)', 'blur(0px)'],
+        duration: 1000,
+        delay: 0
+      },
+      easing: 'easeInQuart',
+      complete: function (anim) {
+        _this.done()
+      }
+    })
+  }
+})
+
+// use our custom transition
+Barba.Pjax.getTransition = function() { return BlurTransition }
+
 // start Barba page transitions
 Barba.Pjax.start()
+Barba.Prefetch.init()
 Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
- console.log('newPageReady', currentStatus)
+  // without this line, the new container comes with opacity=1
+  container.style.opacity = '0'
 })
 
 // attach events

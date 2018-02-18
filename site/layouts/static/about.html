@@ -1,13 +1,20 @@
 {{ partial "header" . }}
 
-<div class="min-vh-100 flex flex-column flex-row-ns barba-container">
+<div id="barba-wrapper" class="min-vh-100 flex flex-column flex-row-ns">
 
 {{ partial "menu-mobile" . }}
 
-  <div class="flex-auto flex vh-100-ns overflow-hidden items-center">
-    <div class="about-text canela white tl pl4 pl6-ns mw8">
+  <div class="flex-auto flex flex-column vh-100-ns overflow-hidden items-start order-2 barba-container">
+    <div class="about-text canela white tl pt5 ph4 ph6-ns mw8">
       {{ .Params.Text | markdownify }}
     </div>
+
+    <div class="contact tl pt5 pt6-ns pl4 pl6-ns">
+      <a class="work fs-sansserif db white no-underline mb2" href="mailto:hola@escopora.co">hola@escorpora.co</a>
+      <a class="work fs-sansserif db white no-underline mb2" href="tfn:0034666111111">+34 678 111 222</a>
+      <a class="work fs-sansserif db white no-underline mb2" href="https://www.instagram.com/escorporamusic/">@escorporamusic</a>
+    </div>
+
   </div>
 
 

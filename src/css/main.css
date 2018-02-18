@@ -28,7 +28,24 @@
 .work { font-family: var(--font-sans-serif); }
 .pause-cursor { cursor: url(/images/pause-icon.svg) 25 25, auto; }
 
+.fs-sansserif {
+  font-size: var(--fs-work-mobile);
+  line-height: 1.2;
 
+  @media (--breakpoint-not-small) {
+    font-size: var(--fs-work-desktop);
+    line-height: 1.2;
+  }
+}
+.fs-serif {
+  font-size: var(--fs-canela-mobile);
+  line-height: 1.2;
+
+  @media (--breakpoint-not-small) {
+    font-size: var(--fs-canela-desktop);
+    line-height: 1.2;
+  }
+}
 /* global css */
 
 body {
@@ -37,6 +54,35 @@ body {
   font-family: var(--font-sans-serif);
   font-size: 1em;
   text-align: center;
+}
+
+.animated-link {
+  position: relative;
+}
+
+.animated-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--white);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .9s cubic-bezier(.86,0,.07,1);
+}
+.animated-link:hover::after {
+  transform: scaleX(1);
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease;
 }
 
 /* artists list */
@@ -199,11 +245,33 @@ video.is-playing {
 /* about */
 .about-text {
   font-size: var(--fs-canela-mobile);
-  line-height: 1;
+  line-height: 1.2;
 }
+
+.about-text > p {
+  margin-bottom: 0; /* fix weird <p> elems generated from markdown */
+}
+
+.contact {
+  font-size: var(--fs-work-mobile);
+}
+
+.contact::before {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: var(--white);
+  margin-bottom: 64px;
+}
+
 @media (--breakpoint-not-small) {
     .about-text {
       font-size: var(--fs-canela-desktop);
       line-height: 1.2;
+    }
+    .contact::before {
+      width: 120px;
+      margin-bottom: 120px;
     }
 }

@@ -4,7 +4,7 @@
 
 {{ partial "menu-mobile" . }}
 
-  <div class="barba-container flex-auto flex flex-column vh-100-ns overflow-hidden items-start order-2">
+  <div class="barba-container flex-auto flex flex-column vh-100-ns overflow-hidden items-start order-2" data-namespace="about">
     <div class="about-text canela white tl pt5 ph4 ph6-ns mw8">
       {{ .Params.Text | markdownify }}
     </div>

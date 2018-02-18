@@ -7,8 +7,9 @@ const mobileNav = document.querySelector('.navigation--mobile')
 const menuIcon = mobileNav.querySelector('.menu-icon')
 const menu = mobileNav.querySelector('.navigation--mobile .menu')
 const brand = mobileNav.querySelector('.navigation--mobile .brand')
-const pauseButton = document.querySelector('.pause-button')
-const videosList = document.querySelector('.video-container')
+let pauseButton = document.querySelector('.pause-button')
+let videosList = document.querySelector('.video-container')
+let artistsList = document.querySelector('.artists')
 
 // reorder all child nodes in `collection`
 // so that `item` is the first one
@@ -74,31 +75,19 @@ const BlurTransition = Barba.BaseTransition.extend({
   }
 })
 
-// use our custom transition
-Barba.Pjax.getTransition = function() { return BlurTransition }
-
-// start Barba page transitions
-Barba.Pjax.start()
-Barba.Prefetch.init()
-Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
-  // without this line, the new container comes with opacity=1
-  container.style.opacity = '0'
-})
-
-// attach events
+// attach menu events
 menuIcon.addEventListener('touchend', function () {
   console.log('menu toggle')
   mobileNav.classList.toggle('is-menu-open')
 })
 
-// video selection
-const artistsList = document.querySelector('.artists')
+// video state
 let currentVideo = null
 let currentItem = null
 
-const handlePlayError = (promise) => {
-    promise.catch(error => console.error(console.error()))
-}
+// const handlePlayError = (promise) => {
+//     promise.catch(error => console.error(console.error()))
+// }
 
 const playVideo = (video, listItem) => {
   console.log(listItem)
@@ -158,11 +147,34 @@ const playVideo = (video, listItem) => {
   }
 }
 
-artistsList.addEventListener('click', function (evt) {
-  let listItem = evt.target
-  let videoName = evt.target.dataset.video
-  let video = document.querySelector(`video[data-name="${videoName}"]`)
-  console.log('current', currentVideo)
-  console.log('new', video)
-  playVideo(video, listItem)
+const attachListEvents = () => {
+  artistsList.addEventListener('click', function (evt) {
+    let listItem = evt.target
+    let videoName = evt.target.dataset.video
+    let video = document.querySelector(`video[data-name="${videoName}"]`)
+    console.log('current', currentVideo)
+    console.log('new', video)
+    playVideo(video, listItem)
+  })
+}
+
+////
+
+// use our custom transition
+Barba.Pjax.getTransition = function() { return BlurTransition }
+
+// start Barba page transitions
+Barba.Pjax.start()
+Barba.Prefetch.init()
+Barba.Dispatcher.on('newPageReady', function (currentStatus, oldStatus, container) {
+  // without this line, the new container comes with opacity=1
+  container.style.opacity = '0'
+  if (currentStatus.namespace === 'home') {
+    artistsList = document.querySelector('.artists')
+    pauseButton = document.querySelector('.pause-button')
+    videosList = document.querySelector('.video-container')
+    attachListEvents()
+  }
 })
+
+attachListEvents()

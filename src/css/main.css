@@ -76,13 +76,10 @@ body {
   transform: scaleX(1);
 }
 
-.fade-out {
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-.fade-in {
-  opacity: 1;
-  transition: opacity 1s ease;
+/* FIX: without this, when transitioning between pages,
+the container reflows its content */
+.barba-container {
+  /*min-width: 1200px;*/
 }
 
 /* artists list */
@@ -92,7 +89,6 @@ body {
   font-size: var(--fs-canela-mobile);
   line-height: 1;
   color: var(--white);
-  mix-blend-mode: overlay;
 }
 
 @media (--breakpoint-not-small) {
@@ -100,6 +96,34 @@ body {
       font-size: var(--fs-canela-desktop);
       line-height: 1.2;
     }
+}
+.artists__item {
+  position: relative;
+}
+.artists__item.is-blink::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #f0484c;
+  display: inline-block;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: -17px;
+  animation: rec 1.333s step-end infinite;
+}
+@media (--breakpoint-not-small) {
+  .artists__item.is-blink::before {
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    left: -20px;
+  }
+}
+@keyframes rec {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* navigation */
@@ -215,6 +239,7 @@ body {
 
   & video {
     object-fit: cover;
+    height: 140%;
     margin-top: -55%;
   }
 }
@@ -234,13 +259,6 @@ video.is-playing {
   opacity: 1;
   transition: .8s opacity ease;
 }
-
-/*@media (min-aspect-ratio: 16/9) {
-  .video-container iframe { height: 300%; top: -100%; }
-}
-@media (max-aspect-ratio: 16/9) {
-  .video-container iframe { width: 300%; left: -100%; }
-}*/
 
 /* about */
 .about-text {

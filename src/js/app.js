@@ -94,12 +94,14 @@ menuIcon.addEventListener('touchend', function () {
 // video selection
 const artistsList = document.querySelector('.artists')
 let currentVideo = null
+let currentItem = null
 
 const handlePlayError = (promise) => {
     promise.catch(error => console.error(console.error()))
 }
 
-const playVideo = (video) => {
+const playVideo = (video, listItem) => {
+  console.log(listItem)
   // user clicked on a video and none was playing --> play it
   if (!currentVideo) {
     video.load()
@@ -107,6 +109,8 @@ const playVideo = (video) => {
       video.play()
     })
     currentVideo = video
+    currentItem = listItem
+    listItem.classList.add('is-blink')
     video.classList.add('is-playing')
     bringToFront(video, videosList)
     document.body.classList.add('pause-cursor')
@@ -115,14 +119,17 @@ const playVideo = (video) => {
   // user clicked on the same video that was playing --> pause it
   } else if (currentVideo === video){
     video.pause()
+    listItem.classList.remove('is-blink')
     video.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
     pauseButton.classList.remove('is-playing')
     currentVideo = null
+    currentItem = null
 
   // user clicked on a different video while one was playing --> pause and play new
   } else if (video) {
     currentVideo.pause()
+    currentItem.classList.remove('is-blink')
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
     pauseButton.classList.remove('is-playing')
@@ -131,6 +138,8 @@ const playVideo = (video) => {
       video.play()
     })
     currentVideo = video
+    currentItem = listItem
+    listItem.classList.add('is-blink')
     video.classList.add('is-playing')
     bringToFront(video, videosList)
     document.body.classList.add('pause-cursor')
@@ -140,17 +149,20 @@ const playVideo = (video) => {
   // user clicked outside any video --> pause current one
   else {
     currentVideo.pause()
+    currentItem.classList.remove('is-blink')
     currentVideo.classList.remove('is-playing')
     document.body.classList.remove('pause-cursor')
     pauseButton.classList.remove('is-playing')
     currentVideo = null
+    currentItem = null
   }
 }
 
 artistsList.addEventListener('click', function (evt) {
-  let videoName = evt.target.parentNode.dataset.video
+  let listItem = evt.target
+  let videoName = evt.target.dataset.video
   let video = document.querySelector(`video[data-name="${videoName}"]`)
   console.log('current', currentVideo)
   console.log('new', video)
-  playVideo(video)
+  playVideo(video, listItem)
 })

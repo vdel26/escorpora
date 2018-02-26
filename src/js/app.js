@@ -28,6 +28,11 @@ const BlurTransition = Barba.BaseTransition.extend({
   fadeOut: function () {
     let _this = this
     let deferred = Barba.Utils.deferred()
+
+    // we take the old container out of the flexbox layout as soon as
+    // the new one is in the DOM, so that the layout doesn't break
+    this.oldContainer.style.position = 'absolute'
+
     anime({
       targets: _this.oldContainer,
       opacity: {
@@ -77,7 +82,6 @@ const BlurTransition = Barba.BaseTransition.extend({
 
 // attach menu events
 menuIcon.addEventListener('touchend', function () {
-  console.log('menu toggle')
   mobileNav.classList.toggle('is-menu-open')
 })
 

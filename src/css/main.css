@@ -226,6 +226,7 @@ body {
 /* mask in artists list */
 .scroll-container {
   z-index: 10;
+  -ms-overflow-style: none; /* no scrollbars on IE */
   /*mask-image: linear-gradient(transparent 0%, black 20%, black 80%, transparent 100%);*/
 }
 

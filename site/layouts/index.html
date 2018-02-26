@@ -14,7 +14,7 @@
 
   {{ range where .Site.Pages "Section" "artist" }}
     {{ if eq .Params.Featured true }}
-      <li class="artists__item artists__item--featured mb4 pointer" data-video="{{ .Params.Video }}">
+      <li class="artists__item artists__item--featured mb3 mb4-ns pointer" data-video="{{ .Params.Video }}">
         {{ .Title }}
       </li>
     {{ end }}

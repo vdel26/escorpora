@@ -67,7 +67,7 @@ body {
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1px;
   background: var(--white);
   transform: scaleX(0);
   transform-origin: left;
@@ -86,7 +86,7 @@ body {
 .artists {
   font-family: var(--font-serif);
   font-size: var(--fs-canela-mobile);
-  line-height: 1;
+  line-height: 1.2;
   color: var(--white);
 }
 
@@ -96,9 +96,11 @@ body {
       line-height: 1;
     }
 }
+
 .artists__item {
   position: relative;
 }
+
 .artists__item.is-blink::before {
   content: "";
   width: 12px;
@@ -280,13 +282,22 @@ video.is-playing {
   width: 48px;
   height: 1px;
   background: var(--white);
-  margin-bottom: 64px;
+  /* margin-bottom: 64px; */
+  margin-bottom: 32px;
+}
+
+.contact > a {
+  opacity: 0.4;
+}
+
+.contact > a:hover {
+  opacity: 1;
 }
 
 @media (--breakpoint-not-small) {
     .about-text {
       font-size: var(--fs-canela-desktop);
-      line-height: 1.2;
+      line-height: 1.3;
     }
     .contact::before {
       width: 80px;

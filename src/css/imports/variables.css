@@ -16,10 +16,15 @@
                 serif;
 
   /* type sizes */
-  --fs-canela-mobile: 24px;
+  /* --fs-canela-mobile: 24px;
   --fs-canela-desktop: 40px;
   --fs-work-mobile: 18px;
-  --fs-work-desktop: 24px;
+  --fs-work-desktop: 24px; */
+
+  --fs-canela-mobile: 22px;
+  --fs-canela-desktop: 36px;
+  --fs-work-mobile: 16px;
+  --fs-work-desktop: 20px;
 
   /* colors */
   --black: #111;

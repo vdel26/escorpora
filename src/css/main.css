@@ -87,14 +87,14 @@ the container reflows its content */
 .artists {
   font-family: var(--font-serif);
   font-size: var(--fs-canela-mobile);
-  line-height: 1.2;
+  line-height: 1;
   color: var(--white);
 }
 
 @media (--breakpoint-not-small) {
     .artists {
       font-size: var(--fs-canela-desktop);
-      line-height: 1.2;
+      line-height: 1;
     }
 }
 .artists__item {
@@ -114,10 +114,10 @@ the container reflows its content */
 }
 @media (--breakpoint-not-small) {
   .artists__item.is-blink::before {
-    width: 20px;
-    height: 20px;
-    top: 10px;
-    left: -32px;
+    width: 18px;
+    height: 18px;
+    top: 5px;
+    left: -30px;
   }
 }
 @keyframes rec {
@@ -141,7 +141,7 @@ the container reflows its content */
 
 .navigation--mobile {
   font-size: var(--fs-work-mobile);
-  line-height: 1;
+  line-height: 20px;
 }
 
 .navigation--desktop {
@@ -172,7 +172,7 @@ the container reflows its content */
 
   & .menu-icon {
     text-align: right;
-    height: 18px;
+    height: 20px;
     width: 32px;
   }
 
@@ -213,7 +213,7 @@ the container reflows its content */
 
 /* mobile "pause" button */
 .pause-button {
-  transform: rotate(270deg) translateX(-40vh);
+  transform: rotate(270deg) translateX(-30vh);
   transform-origin: right bottom 0;
   letter-spacing: 0.5em;
   opacity: 0;
@@ -289,7 +289,7 @@ video.is-playing {
       line-height: 1.2;
     }
     .contact::before {
-      width: 120px;
+      width: 80px;
       margin-bottom: 120px;
     }
 }

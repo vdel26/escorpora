@@ -4,12 +4,23 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "images/"
 collections:
-  - name: "artist" # Used in routes, e.g., /admin/collections/blog
-    label: "Artist" # Used in the UI
-    folder: "artist/" # The path to the folder where the documents are stored
+  - label: "Artist" # Used in the UI
+    name: "artist" # Used in routes, e.g., /admin/collections/blog
+    folder: "site/content/artist" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured in the homepage?", name: "featured", widget: "boolean"}
       - {label: "Video filename", name: "video", widget: "string"}
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "site/content/about.md"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Publish Date", name: "date", widget: "datetime"}
+          - {label: "Text", name: "text", widget: "markdown"}
+          - {label: "Contact links", name: "contacts", widget: "list"}

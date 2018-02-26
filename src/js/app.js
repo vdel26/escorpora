@@ -38,18 +38,18 @@ const BlurTransition = Barba.BaseTransition.extend({
       // the new one is in the DOM, so that the layout doesn't break
       this.oldContainer.style.position = 'absolute'
     }
-    
+
     anime({
       targets: _this.oldContainer,
       opacity: {
         value: 0,
-        duration: 1000,
-        delay: 0
+        duration: 800,
+        delay: 400
       },
       filter: {
         value: ['blur(0px)', 'blur(20px)'],
-        duration: 1000,
-        delay: 150
+        duration: 1300,
+        delay: 0
       },
       easing: 'easeOutQuart',
       complete: function (anim) {
@@ -70,12 +70,12 @@ const BlurTransition = Barba.BaseTransition.extend({
       targets: _this.newContainer,
       opacity: {
         value: 1,
-        duration: 1000,
-        delay: 150
+        duration: 800,
+        delay: 400
       },
       filter: {
         value: ['blur(20px)', 'blur(0px)'],
-        duration: 1000,
+        duration: 1200,
         delay: 0
       },
       easing: 'easeInQuart',

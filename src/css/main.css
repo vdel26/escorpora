@@ -176,7 +176,7 @@ body {
   }
 
   & .menu-icon__line {
-    height: 2px;
+    height: 1px;
     background: var(--white);
     transition: 0.4s all ease;
   }
@@ -276,7 +276,7 @@ video.is-playing {
 .contact::before {
   content: "";
   display: block;
-  width: 64px;
+  width: 48px;
   height: 1px;
   background: var(--white);
   margin-bottom: 64px;

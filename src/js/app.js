@@ -11,6 +11,10 @@ let pauseButton = document.querySelector('.pause-button')
 let videosList = document.querySelector('.video-container')
 let artistsList = document.querySelector('.artists')
 
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+}
+
 // reorder all child nodes in `collection`
 // so that `item` is the first one
 const bringToFront = (item, collection) => {
@@ -29,10 +33,12 @@ const BlurTransition = Barba.BaseTransition.extend({
     let _this = this
     let deferred = Barba.Utils.deferred()
 
-    // we take the old container out of the flexbox layout as soon as
-    // the new one is in the DOM, so that the layout doesn't break
-    this.oldContainer.style.position = 'absolute'
-
+    if (!isMobile()) {
+      // we take the old container out of the flexbox layout as soon as
+      // the new one is in the DOM, so that the layout doesn't break
+      this.oldContainer.style.position = 'absolute'
+    }
+    
     anime({
       targets: _this.oldContainer,
       opacity: {

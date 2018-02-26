@@ -10,12 +10,9 @@
     </div>
 
     <div class="contact tl pt5 pt6-ns pl4 pl6-ns">
-      <a class="work fs-sansserif dt white no-underline mb2" target="_blank" href="mailto:produccions@escorpora.co">produccions@escorpora.co</a>
-      <a class="work fs-sansserif dt white no-underline mb2" target="_blank" href="https://api.whatsapp.com/send?phone=34650637445
-">650637445 Eduard</a>
-      <a class="work fs-sansserif dt white no-underline mb2" target="_blank" href="https://api.whatsapp.com/send?phone=34663775367
-">663775367 Ricard</a>
-      <a class="work fs-sansserif dt white no-underline mb2" target="_blank" href="https://www.instagram.com/escorporabcn/">@escorporabcn</a>
+      {{ range .Params.contacts }}
+        <a class="work fs-sansserif dt white no-underline mb2" target="_blank" href="{{ .link }}">{{ .title }}</a>
+      {{ end }}
     </div>
   </div>
 

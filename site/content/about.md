@@ -1,8 +1,10 @@
 ---
 title: Nosotros
 date: 2018-01-31T20:58:13.000Z
+type: static
+layout: about
 text: >-
-  A Escorpora ens dediquem a la producció d'esdeveniments musicals de tot tipus.
+  A Escórpora ens dediquem a la producció d'esdeveniments musicals de tot tipus.
 
 
   Treballem braç a braç amb alguns dels millors músics i un dels millors segells
@@ -18,4 +20,3 @@ contacts:
   - link: 'https://www.instagram.com/escorporabcn/'
     title: '@escorporabcn'
 ---
-
